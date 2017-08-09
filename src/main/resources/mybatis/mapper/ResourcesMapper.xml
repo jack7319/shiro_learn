@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bizideal.mn.mapper.ResourcesMapper" >
+  <resultMap id="BaseResultMap" type="com.bizideal.mn.entity.Resources" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="perms" property="perms" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectByRoles" parameterType="list" resultMap="BaseResultMap">
+  		SELECT rs.* FROM roles r LEFT JOIN role_resources rr ON r.id = rr.roleid
+		LEFT JOIN resources rs ON rr.resourcesid = rs.id WHERE r.id IN
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")" >
+	      #{item.id}
+	    </foreach> 
+  </select>
+  
+</mapper>

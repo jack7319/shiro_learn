@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:liulq="http://thymeleafexamples">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th style="width: 150px;">会话ID</th>
+				<th>用户名</th>
+				<th>主机地址</th>
+				<th>最后访问时间</th>
+				<th>已强制退出</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="s:${sessions}">
+				<td th:text="${s.id}"></td>
+				<!--             <td liulq:pricipal="${s.id}"></td> -->
+				<td liulq:pricipal="${s.id}"></td>
+				<td th:text="${s.host}"></td>
+				<td th:text="${#dates.format(s.lastAccessTime,'yyyy-MM-dd')}"></td>
+				<td liulq:isforceOut="${s.id ? '是' : '否'}">是</td>
+				<td><a th:href="@{'/sessions/'+${s.id}+'/forceLogout'}"
+					href="forceLogout">强制退出</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

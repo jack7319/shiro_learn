@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a th:href="@{/user/logout}">logout</a><br/>
+	<shiro:hasRole name="user">user角色登录显示此内容<br/></shiro:hasRole>
+	<shiro:hasRole name="admin">admin角色登录显示此内容<br/></shiro:hasRole>
+	<shiro:hasAnyRoles name="admin,user">admin or user角色用户登录显示此内容<br/></shiro:hasAnyRoles><br/>
+	<shiro:principal/>-显示当前登录用户名<br/><br/>
+	<shiro:hasPermission name="index">index权限用户显示此内容<br/></shiro:hasPermission>
+	<shiro:hasPermission name="managerpage">managerpage权限用户显示此内容<br/></shiro:hasPermission>
+    <shiro:lacksPermission name="managerpage">不具有managerpage权限的用户显示此内容 <br/></shiro:lacksPermission>
+    <shiro:lacksPermission name="index">不具有index权限的用户显示此内容 <br/></shiro:lacksPermission>
+    <shiro:hasPermission name="session"><a th:href="@{/sessions/list}" href="">在线用户列表</a> <br/></shiro:hasPermission>
+</body>
+</html>
