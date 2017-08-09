@@ -1,8 +1,8 @@
 package com.bizideal.mn.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.stereotype.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -35,22 +35,22 @@ public class IndexController {
 	public String noneed() {
 		return "noneed";
 	}
-	
+
 	@RequestMapping("/chat")
 	public String chat() {
 		return "chat";
 	}
-	
+
 	@RequestMapping("/tuling")
 	@ResponseBody
 	public ObjectNode tuling(String text) {
 		return post(text);
 	}
-	
-	public ObjectNode post(String text){
+
+	@SuppressWarnings("unused")
+	public ObjectNode post(String text) {
 		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode node1 = mapper.createObjectNode();
 		return null;
 	}
-	
+
 }
